@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -30,8 +31,7 @@ public class StudentController {
     }
 
     @GetMapping("/findById")
-    public ResponseEntity findStudentById(@RequestParam("studentId")Integer studentId) {
-
+    public ResponseEntity<Student> findStudentById(@RequestParam("studentId")Integer studentId) {
         try{
             Student student = studentService.findStudentById(studentId);
             return new ResponseEntity(student,HttpStatus.OK);
@@ -44,8 +44,6 @@ public class StudentController {
     public String modifyPhnNo(@RequestBody ModifyPhnNoRequest modifyPhnNoRequest){
 
         String result = studentService.modifyPhnNo(modifyPhnNoRequest);
-
         return result;
-
     }
 }
